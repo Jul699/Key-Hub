@@ -1,4 +1,4 @@
-package com.citra.keyhub.ui.auth
+package com.citra.keyhub.ui.auth.register
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

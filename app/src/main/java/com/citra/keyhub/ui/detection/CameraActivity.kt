@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.citra.keyhub.ui.auth.LoginActivity
+import com.citra.keyhub.ui.auth.login.LoginActivity
 import com.citra.keyhub.databinding.ActivityCameraBinding
 import com.citra.keyhub.utils.CameraUtil
 import com.citra.keyhub.utils.OnLicensePlateDetectedListener
