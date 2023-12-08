@@ -47,7 +47,15 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation project(path: ':opencv')
 
-    // CameraX core library using the camera2 implementation
+    //network
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    //android jetpack
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
+
+    // CameraX
     var camerax_version = "1.4.0-alpha02"
     implementation("androidx.camera:camera-core:${camerax_version}")
     implementation("androidx.camera:camera-camera2:${camerax_version}")
