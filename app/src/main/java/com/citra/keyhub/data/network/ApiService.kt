@@ -2,11 +2,12 @@ package com.citra.keyhub.data.network
 
 import com.citra.keyhub.data.network.response.login.LoginResponse
 import com.citra.keyhub.data.network.response.login.PostLogin
+import com.citra.keyhub.data.network.response.lostkey.FoundLostKeyPostResponse
 import com.citra.keyhub.data.network.response.lostkey.LostKeyGetResponse
 import com.citra.keyhub.data.network.response.lostkey.LostKeyPostResponse
 import com.citra.keyhub.data.network.response.lostkey.LostKeyUpdateResponse
+import com.citra.keyhub.data.network.response.lostkey.PostFoundKey
 import com.citra.keyhub.data.network.response.lostkey.PostLostKey
-import com.citra.keyhub.data.network.response.lostkey.UpdateLostKey
 import com.citra.keyhub.data.network.response.plate.SearchPlateResponse
 import com.citra.keyhub.data.network.response.register.PostRegister
 import com.citra.keyhub.data.network.response.register.RegisterResponse
@@ -45,5 +46,8 @@ interface ApiService {
     suspend fun getLostKey(): Response<LostKeyGetResponse>
 
     @PUT("lostkey/{lostKeyId}/update")
-    suspend fun updateLostKey(@Path("lostKeyId") lostKeyId: String, @Body updateLostKey: UpdateLostKey): Response<LostKeyUpdateResponse>
+    suspend fun updateLostKey(@Path("lostKeyId") lostKeyId: String, @Body userIdFound:String): Response<LostKeyUpdateResponse>
+
+    @POST("lostkey/found")
+    suspend fun postFoundLostKey(@Body postFoundKey: PostFoundKey): Response<FoundLostKeyPostResponse>
 }

@@ -1,4 +1,6 @@
 package com.citra.keyhub.data.network.response.register
 
-class PostRegister {
-}
+data class PostRegister(
+    val nomor:String,
+    val passowrd : String
+)
