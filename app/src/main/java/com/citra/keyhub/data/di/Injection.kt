@@ -7,6 +7,6 @@ import com.citra.keyhub.data.network.ApiConfig
 object Injection{
     fun provideRepository(context:Context):KeyHubRepository{
         val apiService = ApiConfig.getApiService(context)
-        return KeyHubRepository()
+        return KeyHubRepository(apiService)
     }
 }
