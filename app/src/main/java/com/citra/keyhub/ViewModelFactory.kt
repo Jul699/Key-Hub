@@ -7,7 +7,7 @@ import com.citra.keyhub.data.di.Injection
 import com.citra.keyhub.ui.auth.login.LoginViewModel
 import com.citra.keyhub.ui.auth.register.RegisterViewModel
 import com.citra.keyhub.ui.detection.DetectionViewModel
-import com.citra.keyhub.ui.main.MainActiviryViewModel
+import com.citra.keyhub.ui.main.MainActivityViewModel
 import org.opencv.dnn.DetectionModel
 
 class ViewModelFactory(private val context: Context): ViewModelProvider.NewInstanceFactory() {
@@ -22,7 +22,7 @@ class ViewModelFactory(private val context: Context): ViewModelProvider.NewInsta
             modelClass.isAssignableFrom(DetectionModel::class.java) -> {
                 DetectionViewModel(Injection.provideRepository(context)) as T
             }
-            modelClass.isAssignableFrom(MainActiviryViewModel::class.java) -> {
+            modelClass.isAssignableFrom(MainActivityViewModel::class.java) -> {
                 RegisterViewModel(Injection.provideRepository(context)) as T
             }
 

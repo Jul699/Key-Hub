@@ -1,6 +1,5 @@
 package com.citra.keyhub.ui.detection
 
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -9,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.citra.keyhub.ui.auth.login.LoginActivity
 import com.citra.keyhub.databinding.ActivityCameraBinding
 import com.citra.keyhub.utils.CameraUtil
 import com.citra.keyhub.utils.OnLicensePlateDetectedListener
@@ -23,6 +21,7 @@ class CameraActivity : AppCompatActivity(), OnLicensePlateDetectedListener {
 
     private lateinit var viewBinding: ActivityCameraBinding
     private lateinit var cameraExecutor: ExecutorService
+
 
     init {
         if (OpenCVLoader.initDebug()) {
@@ -59,7 +58,7 @@ class CameraActivity : AppCompatActivity(), OnLicensePlateDetectedListener {
             } else {
                 Toast.makeText(
                     this,
-                    "Permissions not granted by the user.",
+                    "Izin Tidak Diberikan Oleh User",
                     Toast.LENGTH_SHORT
                 ).show()
                 finish()
@@ -87,15 +86,17 @@ class CameraActivity : AppCompatActivity(), OnLicensePlateDetectedListener {
                 this
             )
         )
-    }
-    override fun onLicensePlateDetected(licensePlate: String) {
-        cameraExecutor.shutdown()
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+
     }
 
+    override fun onLicensePlateDetected(plateNumber : String) {
+        viewBinding.licencePlate.text = plateNumber
+        cameraExecutor.shutdown()
+    }
+
+
     override fun onNoLicensePlateDetected() {
-        Log.e(TAG, "onNoLicensePlateDetected: no plate detected" )
+        Log.e(TAG, "onNoLicensePlateDetected: no plate detected")
     }
 
     companion object {

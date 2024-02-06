@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "579846281831",
+    "project_id": "keyhub-14ca5",
+    "storage_bucket": "keyhub-14ca5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579846281831:android:d41760ba78423ca9bb52c2",
+        "android_client_info": {
+          "package_name": "com.citra.keyhub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0g6SX9sBpumlP6l9cib9LmfK2SXpFnTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

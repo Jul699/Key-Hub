@@ -30,7 +30,7 @@ object OCR {
         val roiMat = Mat(mat, plateRect)
         val roiBitmap = Bitmap.createBitmap(roiMat.cols(), roiMat.rows(), Bitmap.Config.ARGB_8888)
         Utils.matToBitmap(roiMat, roiBitmap)
-        OCR.recognizeText(roiBitmap,
+        recognizeText(roiBitmap,
             onResult = { recognizedText ->
                 onResult(recognizedText)
             },

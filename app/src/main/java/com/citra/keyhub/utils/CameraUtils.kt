@@ -1,15 +1,12 @@
 package com.citra.keyhub.utils
 
-import android.Manifest
-import android.app.Activity
 import android.content.Context
-import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.google.common.util.concurrent.ListenableFuture
@@ -20,10 +17,6 @@ import org.opencv.imgproc.Imgproc
 import java.nio.ByteBuffer
 import java.util.concurrent.Executors
 
-private val REQUIRED_PERMISSIONS = arrayOf(
-    "android.permission.CAMERA",
-    "android.permission.WRITE_EXTERNAL_STORAGE"
-)
 
 object CameraUtil {
     fun startCamera(
@@ -53,6 +46,7 @@ object CameraUtil {
             ContextCompat.getMainExecutor(context)
         )
     }
+
 
     fun getMatFromImage(image: ImageProxy): Mat {
         val yBuffer: ByteBuffer = image.planes[0].buffer
@@ -94,4 +88,5 @@ object CameraUtil {
         }
         return mat
     }
+
 }
