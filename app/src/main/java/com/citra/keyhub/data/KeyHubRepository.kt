@@ -1,5 +1,7 @@
 package com.citra.keyhub.data
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.citra.keyhub.Result
@@ -29,14 +31,16 @@ class KeyHubRepository(private val apiService: ApiService) {
             if (response.isSuccessful) {
                 if (data != null) {
                     emit(Result.Success(data))
-                } else {
-                    emit(Result.Error("Gagal melakukan registrasi."))
                 }
+            }  else {
+                val errorMsg = response.code().toString()
+                emit(Result.ErrorResponse(errorMsg))
             }
         } catch (error: Exception) {
             emit(Result.Error("Terjadi kesalahan: ${error.message}"))
         }
     }
+
 
     fun login(nomor: String, password: String): LiveData<Result<LoginResponse>> = liveData {
         emit(Result.Loading)
@@ -47,13 +51,17 @@ class KeyHubRepository(private val apiService: ApiService) {
                 if (data != null) {
                     emit(Result.Success(data))
                 } else {
-                    emit(Result.Error("Gagal login."))
+                    emit(Result.Error("Tidak ada data yang diterima dari server"))
                 }
+            } else {
+                val errorMsg = response.code().toString()
+                emit(Result.ErrorResponse(errorMsg))
             }
         } catch (error: Exception) {
             emit(Result.Error("Terjadi kesalahan: ${error.message}"))
         }
     }
+
 
     fun addDetailUser(
         userId: String,
@@ -76,6 +84,9 @@ class KeyHubRepository(private val apiService: ApiService) {
                 } else {
                     emit(Result.Error("Gagal login."))
                 }
+            } else {
+                val errorMsg = response.code().toString()
+                emit(Result.ErrorResponse(errorMsg))
             }
         } catch (error: Exception) {
             emit(Result.Error("Terjadi kesalahan: ${error.message}"))
@@ -102,6 +113,9 @@ class KeyHubRepository(private val apiService: ApiService) {
                 } else {
                     emit(Result.Error("Gagal login."))
                 }
+            } else {
+                val errorMsg = response.code().toString()
+                emit(Result.ErrorResponse(errorMsg))
             }
         } catch (error: Exception) {
             emit(Result.Error("Terjadi kesalahan: ${error.message}"))
@@ -118,6 +132,9 @@ class KeyHubRepository(private val apiService: ApiService) {
                 } else {
                     emit(Result.Error(response.message()))
                 }
+            } else {
+                val errorMsg = response.code().toString()
+                emit(Result.ErrorResponse(errorMsg))
             }
         } catch (error: Exception) {
             emit(Result.Error("Terjadi kesalahan: ${error.message}"))
@@ -139,6 +156,9 @@ class KeyHubRepository(private val apiService: ApiService) {
                 } else {
                     emit(Result.Error(response.message()))
                 }
+            } else {
+                val errorMsg = response.code().toString()
+                emit(Result.ErrorResponse(errorMsg))
             }
         } catch (error: Exception) {
             emit(Result.Error("Terjadi kesalahan: ${error.message}"))
@@ -158,6 +178,9 @@ class KeyHubRepository(private val apiService: ApiService) {
                 } else {
                     emit(Result.Error(response.message()))
                 }
+            } else {
+                val errorMsg = response.code().toString()
+                emit(Result.ErrorResponse(errorMsg))
             }
         } catch (error: Exception) {
             emit(Result.Error("Terjadi kesalahan: ${error.message}"))
@@ -174,6 +197,9 @@ class KeyHubRepository(private val apiService: ApiService) {
                 } else {
                     emit(Result.Error(response.message()))
                 }
+            } else {
+                val errorMsg = response.code().toString()
+                emit(Result.ErrorResponse(errorMsg))
             }
         } catch (error: Exception) {
             emit(Result.Error("Terjadi kesalahan: ${error.message}"))
@@ -186,7 +212,8 @@ class KeyHubRepository(private val apiService: ApiService) {
         userIdFound: String
     ): LiveData<Result<FoundLostKeyPostResponse>> = liveData {
         try {
-            val response = apiService.postFoundLostKey(PostFoundKey(userIdLost,foundDescription,userIdFound))
+            val response =
+                apiService.postFoundLostKey(PostFoundKey(userIdLost, foundDescription, userIdFound))
             val data = response.body()
             if (response.isSuccessful) {
                 if (data != null) {
@@ -194,6 +221,9 @@ class KeyHubRepository(private val apiService: ApiService) {
                 } else {
                     emit(Result.Error(response.message()))
                 }
+            } else {
+                val errorMsg = response.code().toString()
+                emit(Result.ErrorResponse(errorMsg))
             }
         } catch (error: Exception) {
             emit(Result.Error("Terjadi kesalahan: ${error.message}"))
